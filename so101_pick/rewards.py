@@ -50,15 +50,60 @@ import numpy as np
 
 
 def compute_reward(state: dict, action: np.ndarray) -> float:
-    # ----------------------------------------------------------------------
-    # TODO 1: replace this starter with a staged, dense reward.
-    #
-    # Suggested structure (you decide the exact terms and weights):
-    #   1. approach: reward for reducing the distance between jaws and cube
-    #   2. grasp:    reward for closing the gripper *around* the cube
-    #                (use is_grasped; avoid rewarding a closed gripper in empty air)
-    #   3. lift:     reward for cube_height, only while grasped
-    #   4. success:  a large bonus when state["success"]
-    #   + small penalties if you need them (floor contact, big actions, ...)
-    # ----------------------------------------------------------------------
-    return 1.0 if state["success"] else 0.0
+    dist = float(state["dist_ee_cube"])
+    grasped = bool(state.get("is_grasped", False))
+    height = max(0.0, float(state.get("cube_height", 0.0)))
+    success = bool(state.get("success", False))
+    previous_dist = float(state.get("prev_dist_ee_cube", dist))
+    previous_height = max(0.0, float(state.get("prev_cube_height", height)))
+
+    if not grasped:
+        # Phase 1: Approach & prepare gripper
+        # Use progress as the main signal so a policy cannot profit by
+        # stopping at the nearest rewarding distance.
+        r_approach = 10.0 * (previous_dist - dist)
+        r_approach += 0.05 * (1.0 - np.tanh(5.0 * dist))
+        opening = float(state.get("gripper_opening", 0.6))
+        # Keep gripper open while flying to cube, close only in grasp range.
+        if dist > 0.03:
+            r_grip = 0.05 * float(np.clip(opening / 0.6, 0.0, 1.0))
+        else:
+            r_grip = 0.2 * float(np.clip((0.6 - opening) / 0.6, 0.0, 1.0))
+        r_contact = 0.5 if state.get("fixed_jaw_contact", False) else 0.0
+        r_contact += 0.5 if state.get("moving_jaw_contact", False) else 0.0
+        r_lift = 0.0
+    else:
+        # Phase 2: Grasped! Now the entire objective is to LIFT.
+        r_approach = 0.0
+        r_grip = 0.4
+        r_contact = 1.3
+        r_lift = 30.0 * (height - previous_height)
+
+    # Success bonus: clearly dominate every non-success reward.
+    r_success = 0.0
+    if success:
+        r_success = 100.0
+
+    # Penalties
+    r_floor = -0.5 if state.get("arm_floor_contact", False) else 0.0
+    r_slide = -0.5 * float(state.get("cube_xy_moved", 0.0)) if not grasped else 0.0
+    r_action = -0.01 * float(np.sum(np.square(action)))
+    r_vel = -0.002 * float(np.sum(np.square(state.get("joint_vel", 0.0))))
+    prev_action = np.asarray(state.get("prev_action", np.zeros(5)), dtype=np.float32)
+    r_jerk = -0.02 * float(np.sum(np.square(action - prev_action)))
+    r_time = -0.02
+
+    reward = (
+        r_approach
+        + r_grip
+        + r_contact
+        + r_lift
+        + r_success
+        + r_floor
+        + r_slide
+        + r_action
+        + r_vel
+        + r_jerk
+        + r_time
+    )
+    return float(reward)

@@ -115,6 +115,8 @@ class SO101PickEnv(gym.Env):
         self._target = np.zeros(6)
         self._prev_action = np.zeros(5)
         self._cube_xy0 = np.zeros(2)
+        self._prev_dist_ee_cube = 0.0
+        self._prev_cube_height = 0.0
 
         # Observation space is inferred from YOUR obs function.
         self.reset(seed=0)
@@ -154,6 +156,8 @@ class SO101PickEnv(gym.Env):
         self._steps = 0
         self._prev_action = np.zeros(5)
         state = self._get_state()
+        self._prev_dist_ee_cube = state["dist_ee_cube"]
+        self._prev_cube_height = state["cube_height"]
         return self._obs(state), self._info(state)
 
     # ------------------------------------------------------------------- step
@@ -172,6 +176,8 @@ class SO101PickEnv(gym.Env):
         terminated = bool(state["success"])
         truncated = (not terminated) and self._steps >= self.max_episode_steps
         self._prev_action = a
+        self._prev_dist_ee_cube = state["dist_ee_cube"]
+        self._prev_cube_height = state["cube_height"]
         return self._obs(state), reward, terminated, truncated, self._info(state)
 
     # ------------------------------------------------------------------ state
@@ -220,6 +226,9 @@ class SO101PickEnv(gym.Env):
             # bookkeeping
             "success": bool(is_grasped and cube_height >= LIFT_HEIGHT),
             "last_action": (self._prev_action if last_action is None else last_action).astype(np.float32),
+            "prev_action": self._prev_action.copy().astype(np.float32),
+            "prev_dist_ee_cube": self._prev_dist_ee_cube,
+            "prev_cube_height": self._prev_cube_height,
             "step": self._steps,
         }
 
