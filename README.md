@@ -39,4 +39,6 @@ tensorboard --logdir runs            # Colab: %load_ext tensorboard ; %tensorboa
 
 ## Validated result (this repo)
 `runs/e1_reference_cfg/REPORT.md`: SAC from scratch, `randomization 0`: 50/50 grasp and 50/50 lift in the
-fixed position (simulation only). Random cube positions are NOT solved (26 % success). Tests: `python -m pytest tests`.
+fixed position (simulation only). Random positions: 26 % with that model alone. Tests: `python -m pytest tests`.
+Continuation with growing randomization (`runs/e3_cont_rand10/REPORT.md`, model `final_model.zip` + `vecnormalize_final.pkl`):
+100 % on the fixed position and 98 % on fully random positions (50 episodes each), but the arm touches the floor in most episodes.
