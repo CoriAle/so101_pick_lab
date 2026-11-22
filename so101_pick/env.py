@@ -121,6 +121,7 @@ class SO101PickEnv(gym.Env):
         self._target = np.zeros(6)
         self._prev_action = np.zeros(5)
         self._cube_xy0 = np.zeros(2)
+        self._grasp_steps, self._was_grasped = 0, False
 
         # Observation space is inferred from YOUR obs function.
         self.reset(seed=0)
@@ -176,6 +177,7 @@ class SO101PickEnv(gym.Env):
             mujoco.mj_step(m, d)
         self._steps = 0
         self._prev_action = np.zeros(5)
+        self._grasp_steps, self._was_grasped = 0, False
         state = self._get_state()
         return self._obs(state), self._info(state)
 
@@ -216,6 +218,12 @@ class SO101PickEnv(gym.Env):
         self._steps += 1
 
         state = self._get_state(last_action=a)
+        # grasp bookkeeping (state only, NOT part of the observation)
+        grasped = state["is_grasped"]
+        state["grasp_lost"] = bool(self._was_grasped and not grasped)
+        self._grasp_steps = self._grasp_steps + 1 if grasped else 0
+        state["grasp_steps"] = self._grasp_steps
+        self._was_grasped = grasped
         reward = float(self.reward_fn(state, a.astype(np.float32)))
         terminated = bool(state["success"])
         truncated = (not terminated) and self._steps >= self.max_episode_steps
@@ -269,6 +277,8 @@ class SO101PickEnv(gym.Env):
             "success": bool(is_grasped and cube_height >= LIFT_HEIGHT),
             "last_action": (self._prev_action if last_action is None else last_action).astype(np.float32),
             "step": self._steps,
+            "grasp_steps": self._grasp_steps,      # consecutive grasped steps (updated in step())
+            "grasp_lost": False,                  # True on the step the grasp is lost (set in step())
         }
 
     def _obs(self, state: dict) -> np.ndarray:

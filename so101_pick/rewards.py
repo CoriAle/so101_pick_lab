@@ -106,3 +106,52 @@ def compute_reward(state: dict, action: np.ndarray) -> float:
     else:
         reward -= _approach_cost(lateral, float(offset[2])) + grasp_cost + lift_cost
     return float(reward)
+
+
+# -----------------------------------------------------------------------------
+# v2 (experiment E5): same structure as v1, plus
+#   * grasp credit grows with consecutive grasped steps (a 1-step touch is not a grasp),
+#   * a one-off cost when the grasp is lost,
+#   * pushing the cube costs more (0.3, sharper scale),
+#   * a non-saturating distance term so a far-away cube still pulls the jaws back.
+# Uses state keys `grasp_steps` / `grasp_lost` (bookkeeping, not observations).
+GRASP_STABLE_STEPS = 3
+
+
+def compute_reward_v2(state: dict, action: np.ndarray) -> float:
+    grasped = bool(state["is_grasped"])
+    offset = np.asarray(state["ee_to_cube"])
+    lateral = float(np.linalg.norm(offset[:2]))
+    ready = _close_readiness(state["dist_ee_cube"], lateral)
+
+    touching = bool(state["fixed_jaw_contact"] or state["moving_jaw_contact"])
+    if grasped:
+        held = min(int(state.get("grasp_steps", 1)), GRASP_STABLE_STEPS) / GRASP_STABLE_STEPS
+        grasp_cost = 0.3 * (1.0 - held)
+    else:
+        grasp_cost = 0.3 + _opening_cost(state["gripper_opening"], ready) - 0.12 * ready * touching
+
+    progress = 0.0
+    if grasped:
+        fraction = np.clip(state["cube_height"] / LIFT_HEIGHT, 0.0, 1.0)
+        progress = float(np.tanh(fraction) / np.tanh(1.0))
+    lift_cost = 0.4 * (1.0 - progress)
+
+    slide = 0.3 * np.tanh(max(0.0, state["cube_xy_moved"]) / 0.03)
+    if grasped:
+        slide *= 1.0 - np.tanh(max(0.0, state["cube_height"]) / 0.025)
+    lost = 0.3 * bool(state.get("grasp_lost", False))
+    far = 0.0 if grasped else 0.1 * min(float(state["dist_ee_cube"]), 0.3) / 0.3
+    floor = 0.5 * bool(state["arm_floor_contact"])
+    effort = 0.01 * np.mean(np.square(np.clip(action, -1.0, 1.0)))
+    speed = 0.01 * np.mean(np.square(np.tanh(np.asarray(state["joint_vel"]) / 2.0)))
+
+    reward = -0.01 - slide - lost - floor - effort - speed
+    if state["success"]:
+        reward += 1.0 + float(np.clip((MAX_STEPS - state["step"]) / MAX_STEPS, 0.0, 1.0))
+    else:
+        reward -= _approach_cost(lateral, float(offset[2])) + far + grasp_cost + lift_cost
+    return float(reward)
+
+
+REWARDS = {"v1": compute_reward, "v2": compute_reward_v2}

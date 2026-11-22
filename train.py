@@ -69,8 +69,9 @@ USE_VECNORMALIZE = True
 N_ENVS = 4
 
 
-def make_env(randomization: float):
-    return lambda: gym.make("SO101Pick-v0", randomization=randomization)
+def make_env(randomization: float, reward: str = "v1"):
+    from so101_pick.rewards import REWARDS
+    return lambda: gym.make("SO101Pick-v0", randomization=randomization, reward_fn=REWARDS[reward])
 
 
 def build_model(venv, tb_dir: str, algorithm: str = ALGO, hparams: dict | None = None):
@@ -91,6 +92,8 @@ def main():
     ap.add_argument("--vecnormalize", default=None, help="stats paired with --init")
     ap.add_argument("--replay-buffer", default=None, help="SAC replay buffer to resume with --init")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--reward", choices=("v1", "v2"), default="v1",
+                    help="v1 = E1-E4 reward; v2 = stable-grasp / recovery reward (E5)")
     ap.add_argument("--algorithm", choices=("SAC", "PPO"), default=ALGO)
     ap.add_argument("--n-envs", type=int, default=N_ENVS)
     ap.add_argument("--subproc", action="store_true", help="subprocess vectorisation (default: sequential)")
@@ -137,11 +140,11 @@ def main():
     Path(out, "train.py").write_text(Path(__file__).read_text())
 
     vec_cls = SubprocVecEnv if args.subproc and args.n_envs > 1 else DummyVecEnv
-    venv = make_vec_env(make_env(args.randomization), n_envs=args.n_envs, seed=args.seed, vec_env_cls=vec_cls)
+    venv = make_vec_env(make_env(args.randomization, args.reward), n_envs=args.n_envs, seed=args.seed, vec_env_cls=vec_cls)
     if args.curriculum_steps > 0:
         venv.env_method("set_near_cube_start_probability", 1.0)
     # evaluation always starts from the normal pose (no curriculum) with the full goal
-    eval_env = make_vec_env(make_env(args.randomization), n_envs=1, seed=args.seed + 1000)
+    eval_env = make_vec_env(make_env(args.randomization, args.reward), n_envs=1, seed=args.seed + 1000)
     if normalize:
         venv = (VecNormalize.load(args.vecnormalize, venv) if args.vecnormalize
                 else VecNormalize(venv, norm_obs=True, norm_reward=False))
