@@ -20,7 +20,7 @@ reinforcement learning. No ROS 2 needed: just Python, MuJoCo, Gymnasium and SB3.
 ## The task in one paragraph
 Each step the policy outputs 5 numbers in [-1, 1]: change of shoulder pan, shoulder lift, elbow,
 wrist flex, and gripper (20 Hz, 150 steps per episode). The cube appears on the floor in front of
-the arm. **Success** = both jaws touch the cube *and* the cube centre is >= 15 cm above the floor.
+the arm. **Success** = both jaws touch the cube *and* the cube centre is >= 15.1 cm above its resting height (about 16.35 cm absolute Z).
 
 ## Workflow
 1. `python scripts/check_env.py` and `python tests/test_env.py`: everything passes.
@@ -36,3 +36,7 @@ the arm. **Success** = both jaws touch the cube *and* the cube centre is >= 15 c
 python train.py --run-name my_run --timesteps 200000 --randomization 0
 tensorboard --logdir runs            # Colab: %load_ext tensorboard ; %tensorboard --logdir runs
 ```
+
+## Validated result (this repo)
+`runs/e1_reference_cfg/REPORT.md`: SAC from scratch, `randomization 0`: 50/50 grasp and 50/50 lift in the
+fixed position (simulation only). Random cube positions are NOT solved (26 % success). Tests: `python -m pytest tests`.

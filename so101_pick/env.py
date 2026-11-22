@@ -1,11 +1,12 @@
 """SO-101 pick environment (PROVIDED, you do not need to edit this file).
 
-Task: approach a 2.5 cm cube, grasp it, and lift it 5 cm off the floor.
+Task: approach a 2.5 cm cube, grasp it with both jaws, and lift its centre at
+least 15.1 cm above its resting height.
 
 What you DO edit (see the TODO markers):
     so101_pick/rewards.py        TODO 1: the reward function
-    so101_pick/observations.py   TODO 2: what the policy gets to see
-    train.py                     TODO 3: algorithm + hyperparameters
+    train.py                     TODO 2: algorithm + hyperparameters
+(observations.py is provided; its 21-D layout must not change.)
 
 Conventions
 -----------
@@ -35,7 +36,7 @@ MODEL_PATH = os.path.join(_HERE, "..", "assets", "so101", "pick_scene.xml")
 
 # --- Task constants -----------------------------------------------------------
 CUBE_HALF = 0.0125            # cube half-edge (m); resting centre height
-LIFT_HEIGHT = 0.15            # success: cube centre this far above its rest height
+LIFT_HEIGHT = 0.151           # success: cube centre this far above its rest height (relative, not absolute Z)
 PAN_AXIS_XY = (0.0388353, 0.0)  # world xy of the shoulder_pan axis (cube spawns around it)
 
 # --- Control constants --------------------------------------------------------
@@ -44,6 +45,7 @@ GRIPPER_STEP = 0.20           # rad per step at |action| = 1
 FRAME_SKIP = 10               # 10 x 5 ms physics steps = 50 ms per env step (20 Hz)
 HOME_QPOS = np.array([0.0, -0.5, 0.4, 1.5])   # gripper pointing down, ~9 cm above floor
 GRIPPER_OPEN = 0.6            # ~6 cm jaw opening at the tips
+NEAR_GRIPPER_OPEN = 0.3       # curriculum resets: jaws just wider than the cube
 
 ARM_JOINTS = ["shoulder_pan", "shoulder_lift", "elbow_flex", "wrist_flex"]
 GRIPPER_JOINT = "gripper"
@@ -62,6 +64,7 @@ class SO101PickEnv(gym.Env):
         obs_fn: Optional[Callable] = None,
         render_size: tuple[int, int] = (480, 640),
         camera: str = "front",
+        near_cube_start_probability: float = 0.0,
     ):
         """
         randomization: 0.0 -> cube always at the same spot; 1.0 -> full random
@@ -79,6 +82,8 @@ class SO101PickEnv(gym.Env):
         self.max_episode_steps = max_episode_steps
         self.randomization = float(randomization)
         self.render_size, self.camera = render_size, camera
+        self.near_cube_start_probability = 0.0
+        self.set_near_cube_start_probability(near_cube_start_probability)
 
         self.model = mujoco.MjModel.from_xml_path(MODEL_PATH)
         self.data = mujoco.MjData(self.model)
@@ -87,6 +92,7 @@ class SO101PickEnv(gym.Env):
         # ids
         self._ee_site = m.site("gripperframe").id
         self._cube_body = m.body("cube").id
+        self._gripper_body = m.body("gripper").id
         self._cube_geom = m.geom("cube_geom").id
         self._floor_geom = m.geom("floor").id
         cj = m.joint("cube_joint")
@@ -123,6 +129,12 @@ class SO101PickEnv(gym.Env):
         self.observation_space = spaces.Box(-np.inf, np.inf, shape=probe.shape, dtype=np.float32)
 
     # ------------------------------------------------------------------ reset
+    def set_near_cube_start_probability(self, probability: float):
+        """Curriculum knob. Public method so VecEnv.env_method reaches it through Gym wrappers."""
+        if not 0.0 <= probability <= 1.0:
+            raise ValueError("near_cube_start_probability must be in [0, 1]")
+        self.near_cube_start_probability = float(probability)
+
     def reset(self, *, seed: Optional[int] = None, options: Optional[dict] = None):
         super().reset(seed=seed)
         m, d, rng = self.model, self.data, self.np_random
@@ -148,6 +160,17 @@ class SO101PickEnv(gym.Env):
         d.qpos[a + 3:a + 7] = [np.cos(yaw / 2), 0.0, 0.0, np.sin(yaw / 2)]
         self._cube_xy0 = np.array([x, y])
 
+        # Curriculum (reset only, never actions): with some probability start with the
+        # jaws open just above the cube, which is still on the floor and not grasped.
+        if self.near_cube_start_probability > 0 and rng.random() < self.near_cube_start_probability:
+            goal = np.array([x, y, CUBE_HALF + rng.uniform(0.004, 0.010)])
+            goal[:2] += rng.uniform(-0.002, 0.002, size=2)
+            self._target[:4] = self._near_cube_pose(goal)
+            self._target[5] = NEAR_GRIPPER_OPEN
+            for i, adr in enumerate(self._q_adr):
+                d.qpos[adr] = self._target[i]
+            d.ctrl[self._act_ids] = self._target
+
         # let things settle (the cube drops the last ~0 mm; the arm reaches its pose)
         for _ in range(100):
             mujoco.mj_step(m, d)
@@ -155,6 +178,31 @@ class SO101PickEnv(gym.Env):
         self._prev_action = np.zeros(5)
         state = self._get_state()
         return self._obs(state), self._info(state)
+
+    def _near_cube_pose(self, goal: np.ndarray) -> np.ndarray:
+        """Damped least-squares IK: jaw tips at `goal`, gripper pointing down."""
+        d = self.data
+        adr = np.array(self._q_adr[:4])
+        saved = d.qpos[adr].copy()
+        q = self._target[:4].copy()
+
+        def residual(angles):
+            d.qpos[adr] = angles
+            mujoco.mj_forward(self.model, d)
+            down = d.xmat[self._gripper_body].reshape(3, 3) @ np.array([0.0, 0.0, -1.0])
+            return np.r_[d.site_xpos[self._ee_site] - goal, 0.1 * down[:2]]
+
+        eps = 1e-5
+        for _ in range(80):
+            r = residual(q)
+            if np.linalg.norm(r) < 1e-5:
+                break
+            jac = np.column_stack([(residual(q + eps * np.eye(4)[k]) - r) / eps for k in range(4)])
+            step = np.linalg.solve(jac.T @ jac + 1e-5 * np.eye(4), -jac.T @ r)
+            q = np.clip(q + np.clip(step, -0.1, 0.1), self._ctrl_lo[:4], self._ctrl_hi[:4])
+        d.qpos[adr] = saved
+        mujoco.mj_forward(self.model, d)
+        return q
 
     # ------------------------------------------------------------------- step
     def step(self, action):
@@ -232,6 +280,8 @@ class SO101PickEnv(gym.Env):
             "dist_ee_cube": state["dist_ee_cube"],
             "cube_height": state["cube_height"],
             "is_grasped": state["is_grasped"],
+            "arm_floor_contact": state["arm_floor_contact"],
+            "gripper_opening": state["gripper_opening"],
         }
 
     # ----------------------------------------------------------------- render
