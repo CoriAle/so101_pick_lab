@@ -20,7 +20,7 @@ reinforcement learning. No ROS 2 needed: just Python, MuJoCo, Gymnasium and SB3.
 ## The task in one paragraph
 Each step the policy outputs 5 numbers in [-1, 1]: change of shoulder pan, shoulder lift, elbow,
 wrist flex, and gripper (20 Hz, 150 steps per episode). The cube appears on the floor in front of
-the arm. **Success** = both jaws touch the cube *and* the cube centre is >= 15.1 cm above its resting height (about 16.35 cm absolute Z).
+the arm. **Success** = both jaws touch the cube *and* the cube centre is >= 15 cm above its resting height (about 16.25 cm absolute Z).
 
 ## Workflow
 1. `python scripts/check_env.py` and `python tests/test_env.py`: everything passes.

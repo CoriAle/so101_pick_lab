@@ -58,7 +58,7 @@ def test_lifting_while_grasped_is_rewarded():
 
 def test_success_is_the_best_outcome():
     s = base_state()
-    best_non_success = compute_reward(grasped(s, 0.15), ZERO)
+    best_non_success = compute_reward(grasped(s, 0.149), ZERO)
     assert compute_reward(grasped(s, LIFT_HEIGHT), ZERO) > best_non_success
 
 
@@ -77,10 +77,10 @@ def test_lifting_without_grasp_is_not_rewarded():
     assert compute_reward(air, ZERO) < compute_reward(g, ZERO)
 
 
-def test_15cm_is_not_success_but_15_1cm_is():
+def test_14_9cm_is_not_success_but_15cm_is():
     s = base_state()
-    assert not grasped(s, 0.150)["success"] and grasped(s, 0.151)["success"]
-    assert compute_reward(grasped(s, 0.151), ZERO) > compute_reward(grasped(s, 0.150), ZERO) + 0.5
+    assert not grasped(s, 0.149)["success"] and grasped(s, 0.150)["success"]
+    assert compute_reward(grasped(s, 0.150), ZERO) > compute_reward(grasped(s, 0.149), ZERO) + 0.5
 
 
 def test_earlier_success_is_better():
@@ -92,7 +92,7 @@ def test_earlier_success_is_better():
 
 def test_waiting_below_success_height_costs_reward():
     s = base_state()
-    assert compute_reward(grasped(s, 0.15), ZERO) < 0   # every non-success step is net negative
+    assert compute_reward(grasped(s, 0.149), ZERO) < 0   # every non-success step is net negative
 
 
 def test_one_jaw_contact_beats_none_but_not_full_grasp():

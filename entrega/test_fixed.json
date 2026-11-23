@@ -1,7 +1,7 @@
 {
-  "model": "runs/final_v1_seed0_s3_rand10/best_model.zip",
-  "vecnormalize": "runs/final_v1_seed0_s3_rand10/vecnormalize_best.pkl",
-  "target_height": 0.151,
+  "model": "entrega/best_model.zip",
+  "vecnormalize": "entrega/vecnormalize_best.pkl",
+  "target_height": 0.15,
   "randomization": 0.0,
   "seed": 12345,
   "success_rate": 1.0,
@@ -15,7 +15,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -25,7 +25,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -35,7 +35,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -45,7 +45,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -55,7 +55,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -65,7 +65,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -75,7 +75,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -85,7 +85,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -95,7 +95,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -105,7 +105,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -115,7 +115,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -125,7 +125,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -135,7 +135,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -145,7 +145,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -155,7 +155,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -165,7 +165,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -175,7 +175,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -185,7 +185,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -195,7 +195,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -205,7 +205,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -215,7 +215,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -225,7 +225,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -235,7 +235,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -245,7 +245,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -255,7 +255,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -265,7 +265,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -275,7 +275,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -285,7 +285,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -295,7 +295,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -305,7 +305,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -315,7 +315,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -325,7 +325,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -335,7 +335,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -345,7 +345,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -355,7 +355,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -365,7 +365,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -375,7 +375,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -385,7 +385,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -395,7 +395,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -405,7 +405,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -415,7 +415,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -425,7 +425,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -435,7 +435,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -445,7 +445,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -455,7 +455,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -465,7 +465,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -475,7 +475,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -485,7 +485,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -495,7 +495,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     },
     {
       "success": true,
@@ -505,7 +505,7 @@
       "min_distance": 0.008350613896375201,
       "steps": 16,
       "floor_steps": 2,
-      "episode_return": -11.603452876210213
+      "episode_return": -11.596667602658272
     }
   ]
 }

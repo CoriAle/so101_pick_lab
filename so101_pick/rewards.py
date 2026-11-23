@@ -19,7 +19,7 @@ no signal, so the reward is shaped per phase so that RL can discover the behavio
     is_grasped        bool  BOTH jaws touch the cube
     arm_floor_contact bool  some part of the robot touches the floor
     joint_vel         (5,)  joint velocities (rad/s)
-    success           bool  grasped AND cube_height >= 15.1 cm (episode ends)
+    success           bool  grasped AND cube_height >= 15 cm (episode ends)
     last_action       (5,)  the action just applied, in [-1, 1]
     step              int   steps taken so far in this episode: 0 at reset, then 1, 2, ...
                             An episode is at most 150 steps (20 Hz = 7.5 s), so

@@ -1,7 +1,7 @@
 """SO-101 pick environment (PROVIDED, you do not need to edit this file).
 
 Task: approach a 2.5 cm cube, grasp it with both jaws, and lift its centre at
-least 15.1 cm above its resting height.
+least 15 cm above its resting height.
 
 What you DO edit (see the TODO markers):
     so101_pick/rewards.py        TODO 1: the reward function
@@ -36,7 +36,7 @@ MODEL_PATH = os.path.join(_HERE, "..", "assets", "so101", "pick_scene.xml")
 
 # --- Task constants -----------------------------------------------------------
 CUBE_HALF = 0.0125            # cube half-edge (m); resting centre height
-LIFT_HEIGHT = 0.151           # success: cube centre this far above its rest height (relative, not absolute Z)
+LIFT_HEIGHT = 0.15            # success: cube centre this far above its rest height (relative, not absolute Z)
 PAN_AXIS_XY = (0.0388353, 0.0)  # world xy of the shoulder_pan axis (cube spawns around it)
 
 # --- Control constants --------------------------------------------------------

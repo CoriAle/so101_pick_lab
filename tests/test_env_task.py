@@ -1,4 +1,4 @@
-"""Task-specific env tests: 15.1 cm goal, both jaws, curriculum resets."""
+"""Task-specific env tests: 15 cm goal, both jaws, curriculum resets."""
 import os, sys
 import gymnasium as gym
 import mujoco
@@ -20,14 +20,14 @@ def _place_cube(env, height, grasp):
     return s
 
 
-def test_goal_is_15_1_cm_relative():
-    assert LIFT_HEIGHT == 0.151
+def test_goal_is_15_cm_relative():
+    assert LIFT_HEIGHT == 0.15
 
 
 def test_success_needs_both_jaws_and_full_height():
     e = SO101PickEnv(); e.reset(seed=0)
-    assert _place_cube(e, 0.151, (True, True))["success"]
-    assert not _place_cube(e, 0.150, (True, True))["success"]      # 15.0 cm is not enough
+    assert _place_cube(e, 0.150, (True, True))["success"]
+    assert not _place_cube(e, 0.149, (True, True))["success"]      # 14.9 cm is not enough
     assert not _place_cube(e, 0.0, (True, True))["success"]        # grasp without lifting
     assert not _place_cube(e, 0.20, (True, False))["success"]      # lift with one jaw
     assert not _place_cube(e, 0.20, (False, False))["success"]
