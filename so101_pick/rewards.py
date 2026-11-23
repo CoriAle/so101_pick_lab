@@ -51,7 +51,7 @@ from .env import LIFT_HEIGHT
 
 MAX_STEPS = 150
 
-# Reward = bounded costs (tanh) per phase; initial weights/scales; see entrega/REPORT.md.
+# Reward = bounded costs (tanh) per phase.
 # Every cost lives in [0, weight], so no single term can dominate the success bonus.
 
 

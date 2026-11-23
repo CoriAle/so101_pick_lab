@@ -38,7 +38,20 @@ tensorboard --logdir runs            # Colab: %load_ext tensorboard ; %tensorboa
 ```
 
 ## Delivered result (this repo)
-See `entrega/REPORT.md` (training commands, results, limitations). SAC trained from scratch in three stages
-(randomization 0 -> 0.3 -> 1.0); the final model is chosen on a separate validation set (`scripts/select_model.py`).
-Test results of `entrega/best_model.zip`: 100 % on the fixed position (50 episodes) and 95.5 % on
-random positions (400 episodes); simulation only. Video: `entrega/rollout.mp4`. Tests: `python -m pytest tests`.
+`entrega/` holds the delivered policy (`best_model.zip` + its `vecnormalize_best.pkl`), the rollout video and the
+per-episode test evaluations. SAC trained from scratch in three stages (randomization 0 -> 0.3 -> 1.0), seed 0:
+
+```bash
+python train.py --run-name s1 --seed 0 --randomization 0 --timesteps 200000
+python train.py --run-name s2 --seed 0 --randomization 0.3 --curriculum-steps 0 --timesteps 150000 \
+    --init runs/s1/best_model.zip --vecnormalize runs/s1/vecnormalize_best.pkl
+python train.py --run-name s3 --seed 0 --randomization 1.0 --curriculum-steps 0 --timesteps 400000 \
+    --init runs/s2/final_model.zip --vecnormalize runs/s2/vecnormalize_final.pkl
+python scripts/select_model.py runs/s3      # best checkpoint vs final model on 100 validation episodes (seed 500)
+python evaluate.py runs/s3/best_model.zip --episodes 100 --video rollout.mp4
+```
+
+Test results (deterministic policy, simulation only): 100 % success on the fixed position (50 episodes) and
+95.5 % on random positions (400 episodes, seeds 1 and 2). Failures are mostly unstable grasps that are lost
+shortly after contact, and the jaws touch the floor in most episodes. Results depend on the seed.
+Tests: `python -m pytest tests`.

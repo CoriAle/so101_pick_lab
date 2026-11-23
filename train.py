@@ -10,7 +10,7 @@ Usage examples
 Outputs in runs/<run-name>/: config.json, a snapshot of the source files used,
 best_model.zip + vecnormalize_best.pkl (always saved together), final_model.zip +
 vecnormalize_final.pkl, evaluations_success.npz, TensorBoard logs.
-The recipe of the delivered model (3 stages) is in entrega/REPORT.md.
+The recipe of the delivered model (3 stages) is in the README.
 """
 import argparse
 import json
