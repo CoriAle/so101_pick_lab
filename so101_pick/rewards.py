@@ -1,4 +1,4 @@
-"""TODO 1: the reward function  (this is the heart of the lab).
+"""The reward function (staged, bounded costs).
 
 The task has three phases: APPROACH the cube, GRASP it, LIFT it.
 A single sparse bonus on success (the original starter) gives the policy almost
@@ -51,7 +51,7 @@ from .env import LIFT_HEIGHT
 
 MAX_STEPS = 150
 
-# Reward = bounded costs (tanh) per phase; weights/scales follow the peer reference design.
+# Reward = bounded costs (tanh) per phase; initial weights/scales; see entrega/REPORT.md.
 # Every cost lives in [0, weight], so no single term can dominate the success bonus.
 
 

@@ -38,7 +38,7 @@ tensorboard --logdir runs            # Colab: %load_ext tensorboard ; %tensorboa
 ```
 
 ## Delivered result (this repo)
-See `entrega/REPORT.md`. SAC trained from scratch with `scripts/run_chain.sh 0 final_v1_seed0`
-(randomization 0 -> 0.3 -> 1.0), model chosen on a separate validation set (`scripts/select_model.py`).
+See `entrega/REPORT.md` (training commands, results, limitations). SAC trained from scratch in three stages
+(randomization 0 -> 0.3 -> 1.0); the final model is chosen on a separate validation set (`scripts/select_model.py`).
 Test results of `entrega/best_model.zip`: 100 % on the fixed position (50 episodes) and 95.5 % on
 random positions (400 episodes); simulation only. Video: `entrega/rollout.mp4`. Tests: `python -m pytest tests`.

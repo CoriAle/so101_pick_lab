@@ -1,7 +1,8 @@
 """Task-specific env tests: 15.1 cm goal, both jaws, curriculum resets."""
 import os, sys
-import numpy as np
 import gymnasium as gym
+import mujoco
+import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 import so101_pick  # noqa: F401
 from so101_pick import SO101PickEnv
@@ -11,7 +12,7 @@ from so101_pick.env import CUBE_HALF, LIFT_HEIGHT
 def _place_cube(env, height, grasp):
     """Put the cube `height` above rest and fake the jaw contacts through the state."""
     env.data.qpos[env._cube_qadr + 2] = CUBE_HALF + height
-    import mujoco; mujoco.mj_forward(env.model, env.data)
+    mujoco.mj_forward(env.model, env.data)
     s = env._get_state()
     s["fixed_jaw_contact"], s["moving_jaw_contact"] = grasp
     s["is_grasped"] = all(grasp)

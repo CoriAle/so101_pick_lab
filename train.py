@@ -1,4 +1,4 @@
-"""Training script (PROVIDED harness + TODO 2: tune the hyperparameters).
+"""Training script: SAC (or PPO) with VecNormalize, reset curriculum and success-based model selection.
 
 Usage examples
 --------------
@@ -10,7 +10,7 @@ Usage examples
 Outputs in runs/<run-name>/: config.json, a snapshot of the source files used,
 best_model.zip + vecnormalize_best.pkl (always saved together), final_model.zip +
 vecnormalize_final.pkl, evaluations_success.npz, TensorBoard logs.
-The full training recipe of the delivered model is scripts/run_chain.sh.
+The recipe of the delivered model (3 stages) is in entrega/REPORT.md.
 """
 import argparse
 import json
@@ -28,13 +28,12 @@ import so101_pick  # noqa: F401  (registers "SO101Pick-v0")
 from so101_pick.callbacks import ResetCurriculumCallback, SuccessSelectionEvalCallback
 from so101_pick.env import LIFT_HEIGHT
 
-# TODO 2a: algorithm. SAC is off-policy and sample-efficient: with only 20 Hz x 150-step
+# Algorithm. SAC is off-policy and sample-efficient: with only 20 Hz x 150-step
 # episodes and one cube, reusing every transition from a replay buffer matters more than
 # the wall-clock speed of PPO's many parallel envs.
 ALGO = "SAC"
 
-# TODO 2b: hyperparameters. Starting point = the peer reference configuration
-# (smaller net and batch than the original baseline). Change one thing per run.
+# Hyperparameters (small [64, 64] network, batch 128). Change one thing per run.
 HPARAMS_SAC = {
     "learning_rate": 3e-4,
     "batch_size": 128,
@@ -62,7 +61,7 @@ HPARAMS_PPO = {
 
 HPARAMS = HPARAMS_SAC if ALGO == "SAC" else HPARAMS_PPO
 
-# TODO 2c: normalise observations (joint angles, velocities and metres live on different
+# Normalise observations (joint angles, velocities and metres live on different
 # scales); rewards stay unnormalised so the success bonus keeps its meaning.
 USE_VECNORMALIZE = True
 

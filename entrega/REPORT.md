@@ -13,7 +13,6 @@ El episodio termina al lograrlo, o a los 150 pasos (20 Hz).
 | `rollout.mp4` | Primeros 5 episodios del comando de evaluación del ejercicio (posiciones aleatorias, 5/5 éxitos) |
 | `test_*.json` | Evaluaciones de prueba por episodio |
 | `selection.json` | Validación con la que se eligió el modelo |
-| `config/*.json` | Configuración exacta de las 3 etapas de entrenamiento |
 
 Evaluar: `python evaluate.py entrega/best_model.zip --episodes 100 --video rollout.mp4`.
 El normalizador `vecnormalize_best.pkl` se carga solo.
@@ -47,15 +46,32 @@ El normalizador `vecnormalize_best.pkl` se carga solo.
   - el mejor modelo se elige por éxito;
   - modelo y normalizador se guardan juntos.
 
-## Entrenamiento (desde cero), `scripts/run_chain.sh 0 final_v1_seed0`
+## Entrenamiento (desde cero)
 SAC, MLP [64, 64], lr 3e-4, batch 128, buffer 100 000, learning_starts 1 000, gamma 0.99, tau 0.005, entropía automática.
 4 entornos secuenciales, 1 hilo de torch, VecNormalize solo de observaciones (recompensas sin normalizar), semilla 0.
+En cada etapa, el mejor checkpoint se elige por tasa de éxito en 20 episodios idénticos (semilla de evaluación 1000), cada 5 000 pasos.
 
 | Etapa | `randomization` | Pasos | Inicio |
 |---|---|---|---|
 | 1 | 0 (cubo fijo) | 200 000 | Desde cero, currículo de reset en los primeros 50 000 |
 | 2 | 0.3 | 150 000 | `best` de la etapa 1 |
 | 3 | 1.0 (aleatorio completo) | 400 000 | `final` de la etapa 2 |
+
+```bash
+python train.py --run-name s1 --seed 0 --randomization 0 --timesteps 200000
+python train.py --run-name s2 --seed 0 --randomization 0.3 --curriculum-steps 0 --timesteps 150000 \
+    --init runs/s1/best_model.zip --vecnormalize runs/s1/vecnormalize_best.pkl
+python train.py --run-name s3 --seed 0 --randomization 1.0 --curriculum-steps 0 --timesteps 400000 \
+    --init runs/s2/final_model.zip --vecnormalize runs/s2/vecnormalize_final.pkl
+python scripts/select_model.py runs/s3
+python evaluate.py runs/s3/best_model.zip --episodes 50 --randomization 0
+python evaluate.py runs/s3/best_model.zip --episodes 200 --randomization 1 --seed 1
+python evaluate.py runs/s3/best_model.zip --episodes 200 --randomization 1 --seed 2
+```
+
+Nota: las ejecuciones originales se lanzaron con versiones anteriores de `train.py` que tenían opciones experimentales
+(`--reward`, `--select-by`) ya eliminadas. Los valores usados equivalen a los comportamientos actuales por defecto.
+Los experimentos previos (E1–E5) y la semilla 1 están en un respaldo fuera del repositorio.
 
 **Selección final** (`scripts/select_model.py`): se compararon el mejor checkpoint de la etapa 3 y el último modelo, con 100 episodios aleatorios de **validación** (semilla 500).
 Esa semilla es distinta de la evaluación durante el entrenamiento (semilla 1000) y de las semillas de prueba (1 y 2).
@@ -89,7 +105,7 @@ Política determinista, normalización congelada. Éxito = ambas mandíbulas toc
 | Entrega (semilla 0) | Selección por éxito + validación final | 95.5 % | Es la que se entrega |
 | Misma receta, semilla 1 | Solo cambia la semilla | 84.5 % | Confirma la varianza entre semillas |
 
-Los modelos de E1–E5 y la semilla 1 quedan en un respaldo fuera del repositorio. E4 alcanzó un 97.25 %, pero fue una continuación de E3, mientras que la entrega es un entrenamiento desde cero con una receta reproducible.
+E4 alcanzó un 97.25 %, pero fue una continuación de E3, mientras que la entrega es un entrenamiento desde cero con una receta reproducible.
 
 ## Limitaciones
 - **No es 100 % en posiciones aleatorias.** El fallo típico es un agarre inestable: la mandíbula móvil toca primero, empuja el cubo, el agarre dura 1–2 pasos y se pierde.

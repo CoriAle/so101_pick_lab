@@ -7,5 +7,5 @@ check_env_frame.png
 .pytest_cache/
 venv/*
 
-# deliverable video
+# keep the delivered video
 !entrega/rollout.mp4
