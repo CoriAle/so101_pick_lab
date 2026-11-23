@@ -8,8 +8,7 @@ from stable_baselines3 import SAC
 from stable_baselines3.common.logger import configure
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
-from so101_pick.callbacks import (ResetCurriculumCallback, SaveNormalizationCallback,
-                                  StageEvalCallback)
+from so101_pick.callbacks import ResetCurriculumCallback, SuccessSelectionEvalCallback
 
 
 def _venv():
@@ -45,34 +44,50 @@ def test_curriculum_rejects_nonpositive_duration():
     raise AssertionError
 
 
-def test_best_checkpoint_gets_its_own_normalisation_stats(tmp_path):
+def test_best_model_and_its_normalisation_are_saved_together(tmp_path):
     venv = VecNormalize(_venv(), norm_obs=True, norm_reward=False)
     venv.reset()
+    for _ in range(5):
+        venv.step(np.zeros((2, 5)))
     model = SAC("MlpPolicy", venv, learning_starts=10**9, verbose=0, device="cpu")
-    path = tmp_path / "vecnormalize_best.pkl"
-    cb = SaveNormalizationCallback(path)
+    model.set_logger(configure(None, []))
+    ev = VecNormalize(_venv(), training=False, norm_obs=True, norm_reward=False)
+    cb = SuccessSelectionEvalCallback(ev, eval_freq=1, n_eval_episodes=1, save_dir=str(tmp_path))
     cb.init_callback(model)
-    cb.model = model
+    cb._evaluate = lambda: (1.0, 1.0, -10.0, 20)
+    cb.n_calls = 1
     cb._on_step()
-    saved = VecNormalize.load(str(path), _venv())
+    assert (tmp_path / "best_model.zip").is_file() and (tmp_path / "evaluations_success.npz").is_file()
+    saved = VecNormalize.load(str(tmp_path / "vecnormalize_best.pkl"), _venv())
     assert np.allclose(saved.obs_rms.mean, venv.obs_rms.mean)
 
 
-def test_stage_eval_reports_grasp_lift_height(tmp_path):
-    train, ev = _venv(), _venv()
-    model = SAC("MlpPolicy", train, learning_starts=10**9, verbose=0, device="cpu")
-    logger = configure(None, [])
-    recorded = {}
-    original = logger.record
-    logger.record = lambda k, v, *a, **kw: (recorded.__setitem__(k, v), original(k, v, *a, **kw))[1]
-    model.set_logger(logger)
-    cb = StageEvalCallback(ev, n_eval_episodes=2, eval_freq=1, log_path=str(tmp_path))
+def test_success_selection_prefers_success_over_reward(tmp_path):
+    venv = _venv()
+    model = SAC("MlpPolicy", venv, learning_starts=10**9, verbose=0, device="cpu")
+    model.set_logger(configure(None, []))
+    cb = SuccessSelectionEvalCallback(_venv(), eval_freq=1, n_eval_episodes=1, save_dir=str(tmp_path))
     cb.init_callback(model)
-    cb.model = model
-    cb.n_calls = 0
-    cb.num_timesteps = 0
-    cb._on_step()
-    # EvalCallback dumps the logger values it recorded; ours must be among the recorded keys
-    assert len(cb._done) == 2
-    for key in ("eval/grasp_rate", "eval/lift_rate", "eval/max_height_mean"):
-        assert key in recorded and 0.0 <= recorded[key] <= 1.0 or key.endswith('height_mean'), key
+    results = iter([(0.9, 0.9, -5.0, 20), (1.0, 1.0, -30.0, 40), (0.95, 1.0, -1.0, 15), (1.0, 1.0, -20.0, 30)])
+    cb._evaluate = lambda: next(results)
+    saved = []
+    model.save = lambda path: saved.append(cb.num_timesteps)
+    for t in range(4):
+        cb.n_calls, cb.num_timesteps = t + 1, t
+        cb._on_step()
+    # 0.9 -> best; 1.0 beats it despite lower reward; 0.95 with higher reward does NOT; 1.0 at -20 beats 1.0 at -30
+    assert saved == [0, 1, 3]
+    assert cb.best_key == (1.0, -20.0)
+
+
+def test_success_selection_replays_identical_episodes(tmp_path):
+    model = SAC("MlpPolicy", _venv(), learning_starts=10**9, verbose=0, device="cpu")
+    model.set_logger(configure(None, []))
+    ev = make_vec_env(lambda: gym.make("SO101Pick-v0", randomization=1.0), n_envs=1)
+    cb = SuccessSelectionEvalCallback(ev, eval_freq=1, n_eval_episodes=1, save_dir=str(tmp_path), eval_seed=7)
+    cb.init_callback(model)
+    starts = []
+    real_reset = ev.reset
+    ev.reset = lambda: (starts.append(real_reset().copy()), starts[-1])[1]
+    cb._evaluate(); cb._evaluate()
+    assert np.allclose(starts[0], starts[1])

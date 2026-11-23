@@ -9,7 +9,8 @@ Usage examples
 
 Outputs in runs/<run-name>/: config.json, a snapshot of the source files used,
 best_model.zip + vecnormalize_best.pkl (always saved together), final_model.zip +
-vecnormalize_final.pkl, TensorBoard logs.
+vecnormalize_final.pkl, evaluations_success.npz, TensorBoard logs.
+The full training recipe of the delivered model is scripts/run_chain.sh.
 """
 import argparse
 import json
@@ -24,8 +25,7 @@ from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv, VecNormalize
 
 import so101_pick  # noqa: F401  (registers "SO101Pick-v0")
-from so101_pick.callbacks import (ResetCurriculumCallback, SaveNormalizationCallback,
-                                  StageEvalCallback, StopOnFullSuccessCallback)
+from so101_pick.callbacks import ResetCurriculumCallback, SuccessSelectionEvalCallback
 from so101_pick.env import LIFT_HEIGHT
 
 # TODO 2a: algorithm. SAC is off-policy and sample-efficient: with only 20 Hz x 150-step
@@ -69,9 +69,8 @@ USE_VECNORMALIZE = True
 N_ENVS = 4
 
 
-def make_env(randomization: float, reward: str = "v1"):
-    from so101_pick.rewards import REWARDS
-    return lambda: gym.make("SO101Pick-v0", randomization=randomization, reward_fn=REWARDS[reward])
+def make_env(randomization: float):
+    return lambda: gym.make("SO101Pick-v0", randomization=randomization)
 
 
 def build_model(venv, tb_dir: str, algorithm: str = ALGO, hparams: dict | None = None):
@@ -90,16 +89,13 @@ def main():
                     help="0 = cube always at the same place, 1 = fully random")
     ap.add_argument("--init", default=None, help="checkpoint .zip to CONTINUE from (not a from-scratch run)")
     ap.add_argument("--vecnormalize", default=None, help="stats paired with --init")
-    ap.add_argument("--replay-buffer", default=None, help="SAC replay buffer to resume with --init")
     ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--reward", choices=("v1", "v2"), default="v1",
-                    help="v1 = E1-E4 reward; v2 = stable-grasp / recovery reward (E5)")
     ap.add_argument("--algorithm", choices=("SAC", "PPO"), default=ALGO)
     ap.add_argument("--n-envs", type=int, default=N_ENVS)
     ap.add_argument("--subproc", action="store_true", help="subprocess vectorisation (default: sequential)")
     ap.add_argument("--torch-threads", type=int, default=1)
     ap.add_argument("--eval-freq", type=int, default=5_000, help="env steps between evaluations")
-    ap.add_argument("--eval-episodes", type=int, default=3)
+    ap.add_argument("--eval-episodes", type=int, default=20)
     ap.add_argument("--curriculum-steps", type=int, default=50_000,
                     help="fade easy near-cube resets to zero over this many steps; 0 disables")
     ap.add_argument("--net-width", type=int, default=None)
@@ -107,6 +103,8 @@ def main():
     ap.add_argument("--learning-rate", type=float, default=None)
     ap.add_argument("--normalize-observations", action=argparse.BooleanOptionalAction,
                     default=USE_VECNORMALIZE)
+    ap.add_argument("--eval-seed", type=int, default=1000,
+                    help="seed of the evaluation episodes (identical at every evaluation)")
     ap.add_argument("--stop-after-success-evals", type=int, default=0,
                     help="stop after N consecutive 100%% evaluations; 0 disables")
     args = ap.parse_args()
@@ -140,33 +138,29 @@ def main():
     Path(out, "train.py").write_text(Path(__file__).read_text())
 
     vec_cls = SubprocVecEnv if args.subproc and args.n_envs > 1 else DummyVecEnv
-    venv = make_vec_env(make_env(args.randomization, args.reward), n_envs=args.n_envs, seed=args.seed, vec_env_cls=vec_cls)
+    venv = make_vec_env(make_env(args.randomization), n_envs=args.n_envs, seed=args.seed, vec_env_cls=vec_cls)
     if args.curriculum_steps > 0:
         venv.env_method("set_near_cube_start_probability", 1.0)
     # evaluation always starts from the normal pose (no curriculum) with the full goal
-    eval_env = make_vec_env(make_env(args.randomization, args.reward), n_envs=1, seed=args.seed + 1000)
+    eval_env = make_vec_env(make_env(args.randomization), n_envs=1, seed=args.seed + 1000)
     if normalize:
         venv = (VecNormalize.load(args.vecnormalize, venv) if args.vecnormalize
                 else VecNormalize(venv, norm_obs=True, norm_reward=False))
         venv.training, venv.norm_reward = True, False
         eval_env = VecNormalize(eval_env, training=False, norm_obs=True, norm_reward=False)
-        # the eval env must see the training statistics: SB3's EvalCallback syncs them for us
+        # the eval callback copies the training statistics into eval_env before each evaluation
 
     cls = {"SAC": SAC, "PPO": PPO}[args.algorithm]
     if args.init:
         model = cls.load(args.init, env=venv, tensorboard_log=out)
-        if args.replay_buffer:
-            model.load_replay_buffer(args.replay_buffer)
         print(f"CONTINUING from {args.init} (not a from-scratch run)")
     else:
         model = build_model(venv, out, args.algorithm, hparams)
 
-    eval_cb = StageEvalCallback(
-        eval_env, best_model_save_path=out, log_path=out, deterministic=True,
-        callback_on_new_best=(SaveNormalizationCallback(Path(out, "vecnormalize_best.pkl")) if normalize else None),
-        callback_after_eval=(StopOnFullSuccessCallback(args.stop_after_success_evals)
-                             if args.stop_after_success_evals else None),
-        eval_freq=max(args.eval_freq // args.n_envs, 1), n_eval_episodes=args.eval_episodes)
+    # best_model = highest success rate on the same eval episodes every time (reward breaks ties)
+    eval_cb = SuccessSelectionEvalCallback(
+        eval_env, eval_freq=max(args.eval_freq // args.n_envs, 1), n_eval_episodes=args.eval_episodes,
+        save_dir=out, eval_seed=args.eval_seed, stop_after_full_success=args.stop_after_success_evals)
     callbacks = [eval_cb]
     if args.curriculum_steps > 0:
         callbacks.insert(0, ResetCurriculumCallback(args.curriculum_steps))

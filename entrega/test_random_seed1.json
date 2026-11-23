@@ -1,0 +1,2011 @@
+{
+  "model": "runs/final_v1_seed0_s3_rand10/best_model.zip",
+  "vecnormalize": "runs/final_v1_seed0_s3_rand10/vecnormalize_best.pkl",
+  "target_height": 0.151,
+  "randomization": 1.0,
+  "seed": 1,
+  "success_rate": 0.965,
+  "grasp_rate": 1.0,
+  "episodes": [
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16369365300368857,
+      "peak_grasp_height": 0.16369365300368857,
+      "min_distance": 0.008158821253316396,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.828071281313896
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.170085040312573,
+      "peak_grasp_height": 0.170085040312573,
+      "min_distance": 0.007326749095986974,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -14.630596071481705
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16328732885430516,
+      "peak_grasp_height": 0.16328732885430516,
+      "min_distance": 0.005830323880028375,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.451883167028427
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1564096756108377,
+      "peak_grasp_height": 0.1564096756108377,
+      "min_distance": 0.007388543754469015,
+      "steps": 15,
+      "floor_steps": 2,
+      "episode_return": -11.49972215294838
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1711241626019195,
+      "peak_grasp_height": 0.1711241626019195,
+      "min_distance": 0.005237884841168834,
+      "steps": 20,
+      "floor_steps": 1,
+      "episode_return": -16.862646877765656
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17274011386153987,
+      "peak_grasp_height": 0.17274011386153987,
+      "min_distance": 0.00590028320720542,
+      "steps": 19,
+      "floor_steps": 0,
+      "episode_return": -15.83095446228981
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15264160742318003,
+      "peak_grasp_height": 0.15264160742318003,
+      "min_distance": 0.009621320165854987,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.503309845924377
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16255231896517994,
+      "peak_grasp_height": 0.16255231896517994,
+      "min_distance": 0.0014001544839954939,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -13.13805028796196
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16697039454410167,
+      "peak_grasp_height": 0.16697039454410167,
+      "min_distance": 0.012779739731856603,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -11.08664321899414
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16506753418765427,
+      "peak_grasp_height": 0.16506753418765427,
+      "min_distance": 0.009182626660337048,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -11.341501399874687
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1551761919409103,
+      "peak_grasp_height": 0.1551761919409103,
+      "min_distance": 0.006967014382150074,
+      "steps": 15,
+      "floor_steps": 0,
+      "episode_return": -8.900799453258514
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15436938071488093,
+      "peak_grasp_height": 0.15436938071488093,
+      "min_distance": 0.003735654339341028,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.649784237146378
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15795468236225263,
+      "peak_grasp_height": 0.15795468236225263,
+      "min_distance": 0.007540652071796319,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -10.977554991841316
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16886642838091387,
+      "peak_grasp_height": 0.16886642838091387,
+      "min_distance": 0.006594443741020955,
+      "steps": 19,
+      "floor_steps": 1,
+      "episode_return": -14.406290799379349
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16130472692608838,
+      "peak_grasp_height": 0.16130472692608838,
+      "min_distance": 0.004464049205488503,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -12.35815355181694
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16306846391245988,
+      "peak_grasp_height": 0.16306846391245988,
+      "min_distance": 0.005292570175639953,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -11.291654512286186
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1614059186716231,
+      "peak_grasp_height": 0.1614059186716231,
+      "min_distance": 0.006906259251345614,
+      "steps": 20,
+      "floor_steps": 2,
+      "episode_return": -16.229710146784782
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15998360656660632,
+      "peak_grasp_height": 0.15998360656660632,
+      "min_distance": 0.007553967815675173,
+      "steps": 21,
+      "floor_steps": 5,
+      "episode_return": -18.172395899891853
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.18012032296733238,
+      "peak_grasp_height": 0.18012032296733238,
+      "min_distance": 0.002308082630525259,
+      "steps": 22,
+      "floor_steps": 2,
+      "episode_return": -18.909243881702423
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1763516751016464,
+      "peak_grasp_height": 0.1763516751016464,
+      "min_distance": 0.006741835238662947,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -12.190682977437973
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17811029391754352,
+      "peak_grasp_height": 0.17811029391754352,
+      "min_distance": 0.006168918914525515,
+      "steps": 17,
+      "floor_steps": 0,
+      "episode_return": -10.787908494472504
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1780865069107175,
+      "peak_grasp_height": 0.1780865069107175,
+      "min_distance": 0.00685453154597586,
+      "steps": 21,
+      "floor_steps": 4,
+      "episode_return": -17.90103105455637
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.02893176959982548,
+      "peak_grasp_height": 0.0005222194876579097,
+      "min_distance": 0.01582159510276231,
+      "steps": 150,
+      "floor_steps": 114,
+      "episode_return": -296.2176674604416
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1636363375044079,
+      "peak_grasp_height": 0.1636363375044079,
+      "min_distance": 0.009248564219207635,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -14.863103151321411
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16589057586363948,
+      "peak_grasp_height": 0.16589057586363948,
+      "min_distance": 0.005095460637129082,
+      "steps": 18,
+      "floor_steps": 3,
+      "episode_return": -13.611559271812439
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16824063591141092,
+      "peak_grasp_height": 0.16824063591141092,
+      "min_distance": 0.007945622397837152,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -11.458542346954346
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16004544078393,
+      "peak_grasp_height": 0.16004544078393,
+      "min_distance": 0.010669759371165467,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -11.37280435860157
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17165853748459084,
+      "peak_grasp_height": 0.17165853748459084,
+      "min_distance": 0.0022580806833971735,
+      "steps": 34,
+      "floor_steps": 9,
+      "episode_return": -39.78460992872715
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15784932865356163,
+      "peak_grasp_height": 0.15784932865356163,
+      "min_distance": 0.008103780499724132,
+      "steps": 19,
+      "floor_steps": 0,
+      "episode_return": -12.074430286884308
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15251814576198205,
+      "peak_grasp_height": 0.15251814576198205,
+      "min_distance": 0.007735747808695568,
+      "steps": 31,
+      "floor_steps": 0,
+      "episode_return": -30.74413451552391
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16450726392303977,
+      "peak_grasp_height": 0.16450726392303977,
+      "min_distance": 0.012664276364522187,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -12.60908991098404
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16104628982198585,
+      "peak_grasp_height": 0.16104628982198585,
+      "min_distance": 0.008003377685077091,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -11.729428306221962
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15859025137888938,
+      "peak_grasp_height": 0.15859025137888938,
+      "min_distance": 0.005676719408056597,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -12.644319653511047
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1595540374532,
+      "peak_grasp_height": 0.1595540374532,
+      "min_distance": 0.006779741938701549,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -12.831199169158936
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15467378754097846,
+      "peak_grasp_height": 0.15467378754097846,
+      "min_distance": 0.0034784766907749263,
+      "steps": 20,
+      "floor_steps": 2,
+      "episode_return": -14.80913931131363
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17182777430960966,
+      "peak_grasp_height": 0.17182777430960966,
+      "min_distance": 0.00776966206250102,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -16.006205305457115
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15593003857361382,
+      "peak_grasp_height": 0.15593003857361382,
+      "min_distance": 0.006745825444617995,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -17.316366866230965
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17513352059154963,
+      "peak_grasp_height": 0.17513352059154963,
+      "min_distance": 0.005498833098812708,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.288948088884354
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1713481448428713,
+      "peak_grasp_height": 0.1713481448428713,
+      "min_distance": 0.007869006298500065,
+      "steps": 21,
+      "floor_steps": 3,
+      "episode_return": -20.093893229961395
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17568758228961157,
+      "peak_grasp_height": 0.17568758228961157,
+      "min_distance": 0.0035531210926039473,
+      "steps": 17,
+      "floor_steps": 4,
+      "episode_return": -14.75721824169159
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16547702803015937,
+      "peak_grasp_height": 0.16547702803015937,
+      "min_distance": 0.004560304995896535,
+      "steps": 18,
+      "floor_steps": 3,
+      "episode_return": -15.530091509222984
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1543361468419406,
+      "peak_grasp_height": 0.1543361468419406,
+      "min_distance": 0.003301857835441824,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -12.356313601136208
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15121789145742054,
+      "peak_grasp_height": 0.15121789145742054,
+      "min_distance": 0.005327661205460694,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -11.8117905408144
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16926927724806323,
+      "peak_grasp_height": 0.16926927724806323,
+      "min_distance": 0.010912719368472427,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -14.860818222165108
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16429976493122872,
+      "peak_grasp_height": 0.16429976493122872,
+      "min_distance": 0.0025279928694946995,
+      "steps": 20,
+      "floor_steps": 2,
+      "episode_return": -14.403134927153587
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16125180343684736,
+      "peak_grasp_height": 0.16125180343684736,
+      "min_distance": 0.009338629194721247,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -11.97189386188984
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1728307254318394,
+      "peak_grasp_height": 0.1728307254318394,
+      "min_distance": 0.005442263344329461,
+      "steps": 18,
+      "floor_steps": 4,
+      "episode_return": -15.38089556992054
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.0017699505596377972,
+      "peak_grasp_height": 0.0,
+      "min_distance": 0.014703510685003186,
+      "steps": 150,
+      "floor_steps": 136,
+      "episode_return": -231.13790398836136
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16431913611178836,
+      "peak_grasp_height": 0.16431913611178836,
+      "min_distance": 0.012784721076088221,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -13.392982482910156
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1703827692734264,
+      "peak_grasp_height": 0.1703827692734264,
+      "min_distance": 0.008462893453641127,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.601814866065979
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1661991124707784,
+      "peak_grasp_height": 0.1661991124707784,
+      "min_distance": 0.00561325132297772,
+      "steps": 21,
+      "floor_steps": 2,
+      "episode_return": -18.70758767426014
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16576302303702378,
+      "peak_grasp_height": 0.16576302303702378,
+      "min_distance": 0.003788018845145916,
+      "steps": 18,
+      "floor_steps": 3,
+      "episode_return": -15.056501254439354
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16005829136812014,
+      "peak_grasp_height": 0.16005829136812014,
+      "min_distance": 0.00790781736930869,
+      "steps": 19,
+      "floor_steps": 1,
+      "episode_return": -12.666244372725487
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.00964549138101212,
+      "peak_grasp_height": 0.0,
+      "min_distance": 0.01483658113062682,
+      "steps": 150,
+      "floor_steps": 113,
+      "episode_return": -236.4670684337616
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17140538060608473,
+      "peak_grasp_height": 0.17140538060608473,
+      "min_distance": 0.005780254383550188,
+      "steps": 20,
+      "floor_steps": 3,
+      "episode_return": -14.432243838906288
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1790091433245263,
+      "peak_grasp_height": 0.1790091433245263,
+      "min_distance": 0.005880662184070422,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -14.06659084558487
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16635673267812365,
+      "peak_grasp_height": 0.16635673267812365,
+      "min_distance": 0.006189723377815065,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -12.836938917636871
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.159067456284585,
+      "peak_grasp_height": 0.159067456284585,
+      "min_distance": 0.006435461235542339,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -15.045430362224579
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15857492054082242,
+      "peak_grasp_height": 0.15857492054082242,
+      "min_distance": 0.01307589380382848,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -13.63786481320858
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1530766805885406,
+      "peak_grasp_height": 0.1530766805885406,
+      "min_distance": 0.008605047812821839,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -13.568197652697563
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16763575147486756,
+      "peak_grasp_height": 0.16763575147486756,
+      "min_distance": 0.009901031468172351,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -9.582266494631767
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1567000465180644,
+      "peak_grasp_height": 0.1567000465180644,
+      "min_distance": 0.011556799520998926,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -16.871713995933533
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15423176056310878,
+      "peak_grasp_height": 0.15423176056310878,
+      "min_distance": 0.008686347893942152,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -12.263852447271347
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15143151994741202,
+      "peak_grasp_height": 0.15143151994741202,
+      "min_distance": 0.006389946063636537,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -14.48487001657486
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15253136195538858,
+      "peak_grasp_height": 0.15253136195538858,
+      "min_distance": 0.0037545533912169585,
+      "steps": 18,
+      "floor_steps": 4,
+      "episode_return": -13.72229665517807
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16558385466309938,
+      "peak_grasp_height": 0.16558385466309938,
+      "min_distance": 0.006225991691653648,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -12.352009415626526
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1664306837693668,
+      "peak_grasp_height": 0.1664306837693668,
+      "min_distance": 0.011123601855456085,
+      "steps": 19,
+      "floor_steps": 5,
+      "episode_return": -16.459797084331512
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17163183866866835,
+      "peak_grasp_height": 0.17163183866866835,
+      "min_distance": 0.01017684567427463,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -13.142026886343956
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1564565940591633,
+      "peak_grasp_height": 0.1564565940591633,
+      "min_distance": 0.008502932750478363,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -13.041112780570984
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1585731564434941,
+      "peak_grasp_height": 0.1585731564434941,
+      "min_distance": 0.00494802967556653,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -15.566070035099983
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16257095599758925,
+      "peak_grasp_height": 0.16257095599758925,
+      "min_distance": 0.009093059311773974,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -12.212923675775528
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1635133584200699,
+      "peak_grasp_height": 0.1635133584200699,
+      "min_distance": 0.008332167601632476,
+      "steps": 19,
+      "floor_steps": 5,
+      "episode_return": -18.443796664476395
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15137008259039006,
+      "peak_grasp_height": 0.15137008259039006,
+      "min_distance": 0.004527402280412487,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -11.671477377414703
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16337755607669083,
+      "peak_grasp_height": 0.16337755607669083,
+      "min_distance": 0.007918681947110436,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -9.703978285193443
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17037200357510143,
+      "peak_grasp_height": 0.17037200357510143,
+      "min_distance": 0.0076151235735604115,
+      "steps": 16,
+      "floor_steps": 0,
+      "episode_return": -9.172381713986397
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15398208184151943,
+      "peak_grasp_height": 0.15398208184151943,
+      "min_distance": 0.0037894523715772017,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -13.052273347973824
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1574619887361777,
+      "peak_grasp_height": 0.1574619887361777,
+      "min_distance": 0.006031784355157325,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -16.543403148651123
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15863366325336153,
+      "peak_grasp_height": 0.15863366325336153,
+      "min_distance": 0.0027940768736306495,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.613552793860435
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15309382852699024,
+      "peak_grasp_height": 0.15309382852699024,
+      "min_distance": 0.010967536856139192,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -11.410589620471
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1788533170047298,
+      "peak_grasp_height": 0.1788533170047298,
+      "min_distance": 0.01084634434785363,
+      "steps": 19,
+      "floor_steps": 5,
+      "episode_return": -19.523733869194984
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1619393628397448,
+      "peak_grasp_height": 0.1619393628397448,
+      "min_distance": 0.0031489298677248416,
+      "steps": 19,
+      "floor_steps": 1,
+      "episode_return": -13.92885622382164
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16190801448955833,
+      "peak_grasp_height": 0.16190801448955833,
+      "min_distance": 0.004503691997920484,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -16.461316794157028
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15381249551009546,
+      "peak_grasp_height": 0.15381249551009546,
+      "min_distance": 0.01255119250086317,
+      "steps": 15,
+      "floor_steps": 2,
+      "episode_return": -10.288621470332146
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16247117430409558,
+      "peak_grasp_height": 0.16247117430409558,
+      "min_distance": 0.005348682777150031,
+      "steps": 20,
+      "floor_steps": 2,
+      "episode_return": -16.589021027088165
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.172794841999782,
+      "peak_grasp_height": 0.172794841999782,
+      "min_distance": 0.005988192357016026,
+      "steps": 20,
+      "floor_steps": 3,
+      "episode_return": -18.51608355343342
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17631668495909328,
+      "peak_grasp_height": 0.17631668495909328,
+      "min_distance": 0.006763859048595736,
+      "steps": 35,
+      "floor_steps": 1,
+      "episode_return": -35.69940438866615
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1698697842418241,
+      "peak_grasp_height": 0.1698697842418241,
+      "min_distance": 0.010481999411869999,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -13.81856945157051
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16557478971331627,
+      "peak_grasp_height": 0.16557478971331627,
+      "min_distance": 0.00618346701515806,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.545664876699448
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16656069483348984,
+      "peak_grasp_height": 0.16656069483348984,
+      "min_distance": 0.009350454736651465,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -12.540532156825066
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15590649366330483,
+      "peak_grasp_height": 0.15590649366330483,
+      "min_distance": 0.008898802415586509,
+      "steps": 18,
+      "floor_steps": 4,
+      "episode_return": -14.425661653280258
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15949610581881066,
+      "peak_grasp_height": 0.15949610581881066,
+      "min_distance": 0.005499241827649213,
+      "steps": 19,
+      "floor_steps": 5,
+      "episode_return": -15.638714611530304
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1581445495387788,
+      "peak_grasp_height": 0.1581445495387788,
+      "min_distance": 0.009493438784182281,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.658237174153328
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17066296638901884,
+      "peak_grasp_height": 0.17066296638901884,
+      "min_distance": 0.007925421254038393,
+      "steps": 27,
+      "floor_steps": 2,
+      "episode_return": -27.38637211918831
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15883916641425272,
+      "peak_grasp_height": 0.15883916641425272,
+      "min_distance": 0.008758989850958281,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.893817648291588
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15583572499333143,
+      "peak_grasp_height": 0.15583572499333143,
+      "min_distance": 0.0119269098169998,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -11.567092821002007
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1552734264364508,
+      "peak_grasp_height": 0.1552734264364508,
+      "min_distance": 0.011566185887934528,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -12.327328383922577
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16935718319483065,
+      "peak_grasp_height": 0.16935718319483065,
+      "min_distance": 0.011932873883760986,
+      "steps": 77,
+      "floor_steps": 29,
+      "episode_return": -95.34088677167892
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15235920892544255,
+      "peak_grasp_height": 0.15235920892544255,
+      "min_distance": 0.010156293697082855,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -11.39356416463852
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16502064464205332,
+      "peak_grasp_height": 0.16502064464205332,
+      "min_distance": 0.010284894401801192,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -11.821906939148903
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.164695420132073,
+      "peak_grasp_height": 0.164695420132073,
+      "min_distance": 0.00838678332227092,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -10.524775095283985
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.003693927909979248,
+      "peak_grasp_height": 0.0,
+      "min_distance": 0.011076758669034141,
+      "steps": 150,
+      "floor_steps": 138,
+      "episode_return": -232.7004679441452
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16505239981287465,
+      "peak_grasp_height": 0.16505239981287465,
+      "min_distance": 0.0051813189987236895,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -13.29808583855629
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1536890934897907,
+      "peak_grasp_height": 0.1536890934897907,
+      "min_distance": 0.004256041000971243,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -15.116000071167946
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15995560850257853,
+      "peak_grasp_height": 0.15995560850257853,
+      "min_distance": 0.007999490836304501,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -12.601007461547852
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16928715078208093,
+      "peak_grasp_height": 0.16928715078208093,
+      "min_distance": 0.010046683466075118,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -13.177814289927483
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16664254477504595,
+      "peak_grasp_height": 0.16664254477504595,
+      "min_distance": 0.0049387472979585435,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -11.623741135001183
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17213364392353483,
+      "peak_grasp_height": 0.17213364392353483,
+      "min_distance": 0.0029675273870168016,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -10.709178894758224
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15513879893346755,
+      "peak_grasp_height": 0.15513879893346755,
+      "min_distance": 0.01349027771561468,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -14.042530089616776
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15114943717516746,
+      "peak_grasp_height": 0.15114943717516746,
+      "min_distance": 0.005700443778477923,
+      "steps": 23,
+      "floor_steps": 2,
+      "episode_return": -21.875557258725166
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15514180428254157,
+      "peak_grasp_height": 0.15514180428254157,
+      "min_distance": 0.0070049579186084315,
+      "steps": 16,
+      "floor_steps": 4,
+      "episode_return": -12.39995001256466
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15836907943712167,
+      "peak_grasp_height": 0.15836907943712167,
+      "min_distance": 0.011589059467145,
+      "steps": 15,
+      "floor_steps": 2,
+      "episode_return": -10.00350846350193
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1684146612222696,
+      "peak_grasp_height": 0.1684146612222696,
+      "min_distance": 0.01064151464689821,
+      "steps": 15,
+      "floor_steps": 0,
+      "episode_return": -9.99018457531929
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16905797196603634,
+      "peak_grasp_height": 0.16905797196603634,
+      "min_distance": 0.009740252190293673,
+      "steps": 19,
+      "floor_steps": 6,
+      "episode_return": -16.274973213672638
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16744182744803426,
+      "peak_grasp_height": 0.16744182744803426,
+      "min_distance": 0.005101255653010723,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.49854376912117
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1514643272158151,
+      "peak_grasp_height": 0.1514643272158151,
+      "min_distance": 0.0077604317954919075,
+      "steps": 19,
+      "floor_steps": 1,
+      "episode_return": -14.025908395648003
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.06100782751530637,
+      "peak_grasp_height": 0.023947713102415554,
+      "min_distance": 0.01263866139276755,
+      "steps": 150,
+      "floor_steps": 0,
+      "episode_return": -254.5101974606514
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16022287597909424,
+      "peak_grasp_height": 0.16022287597909424,
+      "min_distance": 0.00466611157713531,
+      "steps": 18,
+      "floor_steps": 5,
+      "episode_return": -16.03444005548954
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1529534643319314,
+      "peak_grasp_height": 0.1529534643319314,
+      "min_distance": 0.008570533953609747,
+      "steps": 19,
+      "floor_steps": 4,
+      "episode_return": -15.791189268231392
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16193349035992977,
+      "peak_grasp_height": 0.16193349035992977,
+      "min_distance": 0.004174428956915198,
+      "steps": 20,
+      "floor_steps": 2,
+      "episode_return": -15.26175832748413
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15453279234983464,
+      "peak_grasp_height": 0.15453279234983464,
+      "min_distance": 0.009037983552017157,
+      "steps": 15,
+      "floor_steps": 2,
+      "episode_return": -10.084251150488853
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16335832059930294,
+      "peak_grasp_height": 0.16335832059930294,
+      "min_distance": 0.0035110575860328942,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -10.39418762922287
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17317318457763609,
+      "peak_grasp_height": 0.17317318457763609,
+      "min_distance": 0.00785530173552107,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -13.728263050317764
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17824318919851798,
+      "peak_grasp_height": 0.17824318919851798,
+      "min_distance": 0.0031759749573955043,
+      "steps": 20,
+      "floor_steps": 0,
+      "episode_return": -15.588453516364098
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16144294799545938,
+      "peak_grasp_height": 0.16144294799545938,
+      "min_distance": 0.01038805958746969,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -12.03865310549736
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17134138394671788,
+      "peak_grasp_height": 0.17134138394671788,
+      "min_distance": 0.00649268747122623,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -15.322020679712296
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15543090305259652,
+      "peak_grasp_height": 0.15543090305259652,
+      "min_distance": 0.0036812875456291123,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -17.98044863343239
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15702715072250845,
+      "peak_grasp_height": 0.15702715072250845,
+      "min_distance": 0.0076586162526279715,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -12.05772802233696
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16603321577516797,
+      "peak_grasp_height": 0.16603321577516797,
+      "min_distance": 0.012788596206770919,
+      "steps": 17,
+      "floor_steps": 0,
+      "episode_return": -13.081979423761368
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17069840930946414,
+      "peak_grasp_height": 0.17069840930946414,
+      "min_distance": 0.006727070843768828,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -11.037443339824677
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17406107670703191,
+      "peak_grasp_height": 0.17406107670703191,
+      "min_distance": 0.003434336556043078,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -10.185210689902306
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16116532379009565,
+      "peak_grasp_height": 0.16116532379009565,
+      "min_distance": 0.009477277320535826,
+      "steps": 19,
+      "floor_steps": 4,
+      "episode_return": -15.872903183102608
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1673119311374993,
+      "peak_grasp_height": 0.1673119311374993,
+      "min_distance": 0.010536874565373937,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -11.266407027840614
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1531511734419382,
+      "peak_grasp_height": 0.1531511734419382,
+      "min_distance": 0.008964980266744037,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -11.693491578102112
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1637856062340421,
+      "peak_grasp_height": 0.1637856062340421,
+      "min_distance": 0.00407769753364413,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.61185172200203
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15907151649650572,
+      "peak_grasp_height": 0.15907151649650572,
+      "min_distance": 0.006649292670848218,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -9.435401260852814
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1542300452265736,
+      "peak_grasp_height": 0.1542300452265736,
+      "min_distance": 0.0065617240950667215,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -12.148937672376633
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17456793921832317,
+      "peak_grasp_height": 0.17456793921832317,
+      "min_distance": 0.003776706801262377,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -13.666277214884758
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1648533417464542,
+      "peak_grasp_height": 0.1648533417464542,
+      "min_distance": 0.007330812657692405,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -14.004217863082886
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1639698418082355,
+      "peak_grasp_height": 0.1639698418082355,
+      "min_distance": 0.003351565541974576,
+      "steps": 17,
+      "floor_steps": 1,
+      "episode_return": -10.622754648327827
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.008331209684535452,
+      "peak_grasp_height": 0.0,
+      "min_distance": 0.014512284301605097,
+      "steps": 150,
+      "floor_steps": 134,
+      "episode_return": -224.47886431217194
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17252300118978495,
+      "peak_grasp_height": 0.17252300118978495,
+      "min_distance": 0.0064377766763199324,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -11.661853283643723
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15404175725708508,
+      "peak_grasp_height": 0.15404175725708508,
+      "min_distance": 0.005714437589733904,
+      "steps": 21,
+      "floor_steps": 2,
+      "episode_return": -18.835942819714546
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17053878990195107,
+      "peak_grasp_height": 0.17053878990195107,
+      "min_distance": 0.008939796831630577,
+      "steps": 19,
+      "floor_steps": 3,
+      "episode_return": -14.833782508969307
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1693935642480362,
+      "peak_grasp_height": 0.1693935642480362,
+      "min_distance": 0.005998989903289299,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -14.993530720472336
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16746368562250274,
+      "peak_grasp_height": 0.16746368562250274,
+      "min_distance": 0.010006336769078136,
+      "steps": 19,
+      "floor_steps": 0,
+      "episode_return": -17.279907315969467
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16458320793630812,
+      "peak_grasp_height": 0.16458320793630812,
+      "min_distance": 0.009852944530118412,
+      "steps": 19,
+      "floor_steps": 5,
+      "episode_return": -19.7729152739048
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15912491383410388,
+      "peak_grasp_height": 0.15912491383410388,
+      "min_distance": 0.008692594809954237,
+      "steps": 18,
+      "floor_steps": 0,
+      "episode_return": -12.96521307528019
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15765372757821486,
+      "peak_grasp_height": 0.15765372757821486,
+      "min_distance": 0.01194846381216705,
+      "steps": 16,
+      "floor_steps": 3,
+      "episode_return": -11.684295773506165
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15248563842240045,
+      "peak_grasp_height": 0.15248563842240045,
+      "min_distance": 0.01101460616541827,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -14.02339917421341
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16027284127513597,
+      "peak_grasp_height": 0.16027284127513597,
+      "min_distance": 0.011061371734807193,
+      "steps": 18,
+      "floor_steps": 0,
+      "episode_return": -14.036345928907394
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16533964656636,
+      "peak_grasp_height": 0.16533964656636,
+      "min_distance": 0.0034278935167482345,
+      "steps": 17,
+      "floor_steps": 4,
+      "episode_return": -15.745967239141464
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16504549242269798,
+      "peak_grasp_height": 0.16504549242269798,
+      "min_distance": 0.004757200062581322,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -13.486602321267128
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15432073552121509,
+      "peak_grasp_height": 0.15432073552121509,
+      "min_distance": 0.005467176032379708,
+      "steps": 20,
+      "floor_steps": 1,
+      "episode_return": -14.59981469810009
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1693344935604301,
+      "peak_grasp_height": 0.1693344935604301,
+      "min_distance": 0.007777490792256737,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -13.968817636370659
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1517657593689092,
+      "peak_grasp_height": 0.1517657593689092,
+      "min_distance": 0.004669540385107387,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -13.848139151930809
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15841670857648207,
+      "peak_grasp_height": 0.15841670857648207,
+      "min_distance": 0.00867244636604321,
+      "steps": 18,
+      "floor_steps": 4,
+      "episode_return": -14.098877504467964
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1613895198782814,
+      "peak_grasp_height": 0.1613895198782814,
+      "min_distance": 0.00891262982544485,
+      "steps": 18,
+      "floor_steps": 3,
+      "episode_return": -13.590628981590271
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16311225448527736,
+      "peak_grasp_height": 0.16311225448527736,
+      "min_distance": 0.01178012621659788,
+      "steps": 17,
+      "floor_steps": 4,
+      "episode_return": -13.771891862154007
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16614099839898025,
+      "peak_grasp_height": 0.16614099839898025,
+      "min_distance": 0.010026335750135595,
+      "steps": 18,
+      "floor_steps": 4,
+      "episode_return": -15.172864109277725
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16799238658974947,
+      "peak_grasp_height": 0.16799238658974947,
+      "min_distance": 0.005311365349679259,
+      "steps": 19,
+      "floor_steps": 4,
+      "episode_return": -14.892009913921356
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17727865140022836,
+      "peak_grasp_height": 0.17727865140022836,
+      "min_distance": 0.0072663251023769426,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -11.522383496165276
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16785490156279265,
+      "peak_grasp_height": 0.16785490156279265,
+      "min_distance": 0.007643906016543386,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -16.441416263580322
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15705320225663952,
+      "peak_grasp_height": 0.15705320225663952,
+      "min_distance": 0.0033995008314034163,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -14.92856228351593
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1544932460942393,
+      "peak_grasp_height": 0.1544932460942393,
+      "min_distance": 0.004971732904696602,
+      "steps": 16,
+      "floor_steps": 4,
+      "episode_return": -12.344902455806732
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17046485874470152,
+      "peak_grasp_height": 0.17046485874470152,
+      "min_distance": 0.004725906050778872,
+      "steps": 17,
+      "floor_steps": 0,
+      "episode_return": -10.982614949345589
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1585064931991062,
+      "peak_grasp_height": 0.1585064931991062,
+      "min_distance": 0.010266996459832986,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.710803553462029
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.158673109336947,
+      "peak_grasp_height": 0.158673109336947,
+      "min_distance": 0.007843868654502432,
+      "steps": 19,
+      "floor_steps": 4,
+      "episode_return": -15.226700022816658
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1526058175344983,
+      "peak_grasp_height": 0.1526058175344983,
+      "min_distance": 0.011478023652806313,
+      "steps": 14,
+      "floor_steps": 1,
+      "episode_return": -9.6362733989954
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1670988822755949,
+      "peak_grasp_height": 0.1670988822755949,
+      "min_distance": 0.0037308560587677743,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -12.006069630384445
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15246716807048621,
+      "peak_grasp_height": 0.15246716807048621,
+      "min_distance": 0.006851407953689803,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -9.665830329060555
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15680001195566132,
+      "peak_grasp_height": 0.15680001195566132,
+      "min_distance": 0.010621198236360001,
+      "steps": 17,
+      "floor_steps": 4,
+      "episode_return": -14.55276744067669
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1584010920130148,
+      "peak_grasp_height": 0.1584010920130148,
+      "min_distance": 0.010678081995397113,
+      "steps": 18,
+      "floor_steps": 0,
+      "episode_return": -12.988218635320663
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17012189936175628,
+      "peak_grasp_height": 0.17012189936175628,
+      "min_distance": 0.004603799383723979,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -14.913895517587662
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17030323885039325,
+      "peak_grasp_height": 0.17030323885039325,
+      "min_distance": 0.005606183721483328,
+      "steps": 39,
+      "floor_steps": 2,
+      "episode_return": -38.94325126707554
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15969058371422867,
+      "peak_grasp_height": 0.15969058371422867,
+      "min_distance": 0.00562219034149615,
+      "steps": 19,
+      "floor_steps": 1,
+      "episode_return": -14.716517075896263
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15216005966452645,
+      "peak_grasp_height": 0.15216005966452645,
+      "min_distance": 0.002055719150961866,
+      "steps": 16,
+      "floor_steps": 0,
+      "episode_return": -10.113360181450844
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15376324199982896,
+      "peak_grasp_height": 0.15376324199982896,
+      "min_distance": 0.01130281133317396,
+      "steps": 15,
+      "floor_steps": 2,
+      "episode_return": -9.975912943482399
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16737260605636214,
+      "peak_grasp_height": 0.16737260605636214,
+      "min_distance": 0.006146924881750618,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -9.676927402615547
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17768639615960008,
+      "peak_grasp_height": 0.17768639615960008,
+      "min_distance": 0.005160483111109708,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -10.872016042470932
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16303635411541487,
+      "peak_grasp_height": 0.16303635411541487,
+      "min_distance": 0.009972357233836774,
+      "steps": 16,
+      "floor_steps": 1,
+      "episode_return": -10.886716693639755
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16441462014431246,
+      "peak_grasp_height": 0.16441462014431246,
+      "min_distance": 0.00954126304276312,
+      "steps": 17,
+      "floor_steps": 0,
+      "episode_return": -11.416593611240387
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15824549384251507,
+      "peak_grasp_height": 0.15824549384251507,
+      "min_distance": 0.009735294585650556,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -9.468167290091515
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.153342606656465,
+      "peak_grasp_height": 0.153342606656465,
+      "min_distance": 0.00961319397471987,
+      "steps": 15,
+      "floor_steps": 1,
+      "episode_return": -11.381401985883713
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15274389200375654,
+      "peak_grasp_height": 0.15274389200375654,
+      "min_distance": 0.009658035647972005,
+      "steps": 15,
+      "floor_steps": 0,
+      "episode_return": -9.416880756616592
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15366998131989965,
+      "peak_grasp_height": 0.15366998131989965,
+      "min_distance": 0.0037690852192031037,
+      "steps": 17,
+      "floor_steps": 2,
+      "episode_return": -13.00288137793541
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15441712746392308,
+      "peak_grasp_height": 0.15441712746392308,
+      "min_distance": 0.008109091501051704,
+      "steps": 16,
+      "floor_steps": 0,
+      "episode_return": -12.255002498626709
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16112097578177378,
+      "peak_grasp_height": 0.16112097578177378,
+      "min_distance": 0.010716154103498618,
+      "steps": 18,
+      "floor_steps": 5,
+      "episode_return": -15.026810079813004
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16399836271322818,
+      "peak_grasp_height": 0.16399836271322818,
+      "min_distance": 0.008774612735017036,
+      "steps": 18,
+      "floor_steps": 1,
+      "episode_return": -12.86166849732399
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15259975895547204,
+      "peak_grasp_height": 0.15259975895547204,
+      "min_distance": 0.006990186286400159,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -11.313624665141106
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17588231703556195,
+      "peak_grasp_height": 0.17588231703556195,
+      "min_distance": 0.009043139489825646,
+      "steps": 20,
+      "floor_steps": 2,
+      "episode_return": -16.33587232977152
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16517722436662843,
+      "peak_grasp_height": 0.16517722436662843,
+      "min_distance": 0.004186785605450316,
+      "steps": 35,
+      "floor_steps": 4,
+      "episode_return": -33.87304228544235
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15972493456563205,
+      "peak_grasp_height": 0.15972493456563205,
+      "min_distance": 0.00953308802579062,
+      "steps": 17,
+      "floor_steps": 3,
+      "episode_return": -11.973906338214874
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.16374107817747757,
+      "peak_grasp_height": 0.16374107817747757,
+      "min_distance": 0.010397914700954577,
+      "steps": 22,
+      "floor_steps": 2,
+      "episode_return": -18.699230521917343
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1723635463680379,
+      "peak_grasp_height": 0.1723635463680379,
+      "min_distance": 0.00267565773923932,
+      "steps": 18,
+      "floor_steps": 2,
+      "episode_return": -12.834899455308914
+    },
+    {
+      "success": false,
+      "grasped": true,
+      "peak_height": 0.008055912950561898,
+      "peak_grasp_height": 0.0014181392091231239,
+      "min_distance": 0.01143489439726329,
+      "steps": 150,
+      "floor_steps": 103,
+      "episode_return": -253.09790951013565
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1571044884619679,
+      "peak_grasp_height": 0.1571044884619679,
+      "min_distance": 0.009167383823382858,
+      "steps": 16,
+      "floor_steps": 2,
+      "episode_return": -13.160622045397758
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.17006884430963295,
+      "peak_grasp_height": 0.17006884430963295,
+      "min_distance": 0.00789787280814059,
+      "steps": 19,
+      "floor_steps": 2,
+      "episode_return": -15.923392295837402
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.15836137517518822,
+      "peak_grasp_height": 0.15836137517518822,
+      "min_distance": 0.006846013314164999,
+      "steps": 28,
+      "floor_steps": 1,
+      "episode_return": -31.64516043663025
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1583223798396446,
+      "peak_grasp_height": 0.1583223798396446,
+      "min_distance": 0.006080042539294817,
+      "steps": 23,
+      "floor_steps": 2,
+      "episode_return": -22.171589016914368
+    },
+    {
+      "success": true,
+      "grasped": true,
+      "peak_height": 0.1515363991970396,
+      "peak_grasp_height": 0.1515363991970396,
+      "min_distance": 0.007728967072082038,
+      "steps": 41,
+      "floor_steps": 1,
+      "episode_return": -44.00143623352051
+    }
+  ]
+}

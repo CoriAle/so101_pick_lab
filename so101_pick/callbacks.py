@@ -1,6 +1,7 @@
-"""Training callbacks: reset curriculum, per-stage evaluation metrics, paired normalisation stats."""
+"""Training callbacks: reset curriculum and success-based model selection."""
 import numpy as np
-from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
+from stable_baselines3.common.callbacks import BaseCallback
+from stable_baselines3.common.vec_env import sync_envs_normalization
 
 
 class ResetCurriculumCallback(BaseCallback):
@@ -33,58 +34,63 @@ class ResetCurriculumCallback(BaseCallback):
         return True
 
 
-class SaveNormalizationCallback(BaseCallback):
-    """Used as `callback_on_new_best`: stores the VecNormalize stats next to best_model.zip."""
+class SuccessSelectionEvalCallback(BaseCallback):
+    """Periodic evaluation that keeps the checkpoint with the best *task success*.
 
-    def __init__(self, path):
+    * Every evaluation replays the same cube positions (eval env reseeded with `eval_seed`),
+      so checkpoints are compared on identical episodes.
+    * Ranking: success rate first, mean episode reward only as tie-break.
+    * The best model and its VecNormalize statistics are saved together.
+    """
+
+    def __init__(self, eval_env, eval_freq: int, n_eval_episodes: int, save_dir: str,
+                 eval_seed: int = 1000, stop_after_full_success: int = 0):
         super().__init__()
-        self.path = str(path)
+        self.eval_env, self.eval_freq, self.n_eval_episodes = eval_env, eval_freq, n_eval_episodes
+        self.save_dir, self.eval_seed = str(save_dir), eval_seed
+        self.stop_after = stop_after_full_success
+        self.best_key, self.streak = None, 0
+        self.history = {"timesteps": [], "success": [], "grasp": [], "reward": [], "length": []}
 
-    def _on_step(self):
-        normalizer = self.model.get_vec_normalize_env()
-        if normalizer is not None:
-            normalizer.save(self.path)
-        return True
-
-
-class StageEvalCallback(EvalCallback):
-    """EvalCallback that also logs grasp rate, lift rate and mean peak height per evaluation."""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._open, self._done = {}, []
+    def _evaluate(self):
+        if self.model.get_vec_normalize_env() is not None:
+            sync_envs_normalization(self.training_env, self.eval_env)
+        self.eval_env.seed(self.eval_seed)
+        successes, grasps, rewards, lengths = [], [], [], []
+        for _ in range(self.n_eval_episodes):
+            obs, done, ret, n, grasped = self.eval_env.reset(), False, 0.0, 0, False
+            while not done:
+                action, _ = self.model.predict(obs, deterministic=True)
+                obs, r, d, infos = self.eval_env.step(action)
+                done, info = bool(d[0]), infos[0]
+                ret += float(r[0]); n += 1
+                grasped |= bool(info.get("is_grasped", False))
+            successes.append(bool(info.get("is_success", False)))
+            grasps.append(grasped); rewards.append(ret); lengths.append(n)
+        return float(np.mean(successes)), float(np.mean(grasps)), float(np.mean(rewards)), float(np.mean(lengths))
 
     def _on_step(self) -> bool:
-        if self.eval_freq > 0 and self.n_calls % self.eval_freq == 0:
-            self._open, self._done = {}, []
-        return super()._on_step()
-
-    def _log_success_callback(self, locals_, globals_):
-        super()._log_success_callback(locals_, globals_)
-        info, idx = locals_["info"], locals_.get("i", 0)
-        ep = self._open.setdefault(idx, [False, False, 0.0])   # grasped, success, peak height
-        ep[0] |= bool(info.get("is_grasped", False))
-        ep[1] |= bool(info.get("is_success", False))
-        ep[2] = max(ep[2], float(info.get("cube_height", 0.0)))
-        if locals_["done"]:
-            self._done.append(self._open.pop(idx))
-            grasp, lift, height = np.mean(self._done, axis=0)
-            self.logger.record("eval/grasp_rate", float(grasp))
-            self.logger.record("eval/lift_rate", float(lift))
-            self.logger.record("eval/max_height_mean", float(height))
-
-
-class StopOnFullSuccessCallback(BaseCallback):
-    """Used as `callback_after_eval`: stop after N consecutive evaluations with 100% success."""
-
-    def __init__(self, evaluations: int):
-        super().__init__()
-        self.evaluations, self.streak = evaluations, 0
-
-    def _on_step(self):
-        buf = self.parent._is_success_buffer
-        self.streak = self.streak + 1 if buf and all(buf) else 0
-        if self.streak >= self.evaluations:
+        if self.n_calls % self.eval_freq != 0:
+            return True
+        success, grasp, reward, length = self._evaluate()
+        for k, v in zip(self.history, (self.num_timesteps, success, grasp, reward, length)):
+            self.history[k].append(v)
+        np.savez(f"{self.save_dir}/evaluations_success.npz", **{k: np.array(v) for k, v in self.history.items()})
+        self.logger.record("eval/success_rate", success)
+        self.logger.record("eval/grasp_rate", grasp)
+        self.logger.record("eval/mean_reward", reward)
+        self.logger.record("eval/mean_ep_length", length)
+        key = (success, reward)
+        if self.best_key is None or key > self.best_key:
+            self.best_key = key
+            self.model.save(f"{self.save_dir}/best_model")
+            normalizer = self.model.get_vec_normalize_env()
+            if normalizer is not None:
+                normalizer.save(f"{self.save_dir}/vecnormalize_best.pkl")
+            print(f"New best (success {success:.0%}, reward {reward:.1f}) at {self.num_timesteps} steps")
+        self.logger.dump(self.num_timesteps)
+        self.streak = self.streak + 1 if success == 1.0 else 0
+        if self.stop_after and self.streak >= self.stop_after:
             print(f"Stopping: {self.streak} consecutive evaluations with 100% success.")
             return False
         return True

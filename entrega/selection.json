@@ -1,0 +1,21 @@
+{
+  "rule": "highest validation success rate, ties broken by mean episode return",
+  "validation": {
+    "episodes": 100,
+    "seed": 500,
+    "randomization": 1.0
+  },
+  "not_used_for_selection": "test seeds 1 and 2 (reported results)",
+  "results": {
+    "checkpoint_eval20": {
+      "success_rate": 0.89,
+      "mean_return": -38.66721349954605
+    },
+    "final": {
+      "success_rate": 0.96,
+      "mean_return": -24.35003885284066
+    }
+  },
+  "selected": "final",
+  "best_model.zip": "copy of final_model.zip"
+}

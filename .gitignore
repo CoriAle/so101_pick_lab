@@ -6,3 +6,6 @@ __pycache__/
 check_env_frame.png
 .pytest_cache/
 venv/*
+
+# deliverable video
+!entrega/rollout.mp4

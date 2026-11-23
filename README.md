@@ -37,8 +37,8 @@ python train.py --run-name my_run --timesteps 200000 --randomization 0
 tensorboard --logdir runs            # Colab: %load_ext tensorboard ; %tensorboard --logdir runs
 ```
 
-## Validated result (this repo)
-`runs/e1_reference_cfg/REPORT.md`: SAC from scratch, `randomization 0`: 50/50 grasp and 50/50 lift in the
-fixed position (simulation only). Random positions: 26 % with that model alone. Tests: `python -m pytest tests`.
-Continuation with growing randomization (`runs/e3_cont_rand10/REPORT.md`, model `final_model.zip` + `vecnormalize_final.pkl`):
-100 % on the fixed position and 98 % on fully random positions (50 episodes each), but the arm touches the floor in most episodes.
+## Delivered result (this repo)
+See `entrega/REPORT.md`. SAC trained from scratch with `scripts/run_chain.sh 0 final_v1_seed0`
+(randomization 0 -> 0.3 -> 1.0), model chosen on a separate validation set (`scripts/select_model.py`).
+Test results of `entrega/best_model.zip`: 100 % on the fixed position (50 episodes) and 95.5 % on
+random positions (400 episodes); simulation only. Video: `entrega/rollout.mp4`. Tests: `python -m pytest tests`.
